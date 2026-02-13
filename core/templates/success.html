@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration Successful</title>
+
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ffffff,  #ffffff);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .success-card {
+            background: white;
+            padding: 40px;
+            width: 400px;
+            text-align: center;
+            border-radius: 12px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        .success-card h2 {
+            color: #2E7D32;
+            margin-bottom: 15px;
+        }
+
+        .success-card p {
+            color: #555;
+            margin-bottom: 25px;
+            font-size: 16px;
+        }
+
+        .success-card a {
+            display: inline-block;
+            padding: 12px 25px;
+            background: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .success-card a:hover {
+            background: #388E3C;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="success-card">
+        <h2>🎉 Registration Successful!</h2>
+        <p>Your account has been created successfully.</p>
+
+        <a href="{% url 'login' %}">Get Started</a>
+    </div>
+
+</body>
+</html>
+

@@ -1,0 +1,25 @@
+<h2>Approved Loans</h2>
+
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Loan Amount</th>
+        <th>Total Payable</th>
+        <th>Total Paid</th>
+        <th>Remaining Balance</th>
+        <th>Action</th>
+    </tr>
+
+    {% for loan in loans %}
+    <tr>
+        <td>{{ loan.applicant_name }}</td>
+        <td>{{ loan.loan_amount }}</td>
+        <td>{{ loan.total_payable }}</td>
+        <td>{{ loan.total_paid }}</td>
+        <td>{{ loan.remaining_balance }}</td>
+        <td>
+            <a href="{% url 'add_payment' loan.id %}">Add Payment</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>

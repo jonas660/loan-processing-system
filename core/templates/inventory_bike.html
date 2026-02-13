@@ -1,0 +1,127 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bicycle Shop Inventory</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { min-height: 100vh; background: #304ffe; display: flex; justify-content: center; align-items: center; padding: 20px; }
+
+        .inventory-container {
+            background: #ffffff;
+            width: 450px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        h2, h3 { text-align: center; margin-bottom: 20px; color: #000; }
+
+        ul { list-style: none; padding: 0; margin-bottom: 20px; }
+
+        li {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .bike-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .bike-actions {
+            display: flex;
+            gap: 5px;
+            margin-top: 5px;
+        }
+
+        input, button {
+            padding: 8px 10px;
+            margin: 5px 0;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            font-size: 14px;
+            width: 100%;
+        }
+
+        button {
+            background: linear-gradient(to right, #FFA07A, #FA8072);
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        button:hover {
+            background: linear-gradient(to right, #E9967A, #F08080);
+            transform: translateY(-2px);
+        }
+
+        .btn-delete {
+            background: linear-gradient(to right, #ff4b4b, #ff0000);
+        }
+
+        .btn-delete:hover {
+            background: linear-gradient(to right, #e60000, #cc0000);
+        }
+
+        .message { text-align: center; color: green; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+
+<div class="inventory-container">
+    <h2>Bicycle Shop Inventory</h2>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="message">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+
+    <ul>
+        {% for bike in inventory %}
+        <li>
+            <div class="bike-row">
+                <strong>{{ bike.name }}</strong>
+                <span>Qty: {{ bike.quantity }} | ₱{{ bike.price }}</span>
+            </div>
+
+            <!-- EDIT FORM -->
+            <form method="POST" action="{% url 'inventory_bike' %}">
+                {% csrf_token %}
+                <input type="hidden" name="bike_id" value="{{ bike.id }}">
+                <input type="number" name="quantity" value="{{ bike.quantity }}" min="1">
+                <input type="number" name="price" value="{{ bike.price }}" step="0.01">
+
+                <div class="bike-actions">
+                    <button type="submit" name="action" value="edit">Update</button>
+                    <button type="submit" name="action" value="delete" class="btn-delete"
+                        onclick="return confirm('Delete this bike?')">
+                        Delete
+                    </button>
+                </div>
+            </form>
+        </li>
+        {% empty %}
+        <li>No bicycles available.</li>
+        {% endfor %}
+    </ul>
+
+    <div class="add-item-form">
+        <h3>Add New Bicycle</h3>
+        <form method="POST">
+            {% csrf_token %}
+            <input type="text" name="name" placeholder="Bicycle Name" required>
+            <input type="number" name="quantity" placeholder="Quantity" min="1" required>
+            <input type="number" name="price" placeholder="Price ($)" step="0.01" required>
+            <button type="submit" name="action" value="add">Add Bicycle</button>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

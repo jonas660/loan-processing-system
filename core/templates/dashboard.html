@@ -1,0 +1,147 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Loan Processing Dashboard</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-image: url("{% static 'images/background.jpg' %}");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+}
+
+/* ☰ Toggle Button */
+.toggle-btn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background: #231284;
+    color: white;
+    border: none;
+    font-size: 22px;
+    padding: 10px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+/* Sidebar */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 220px;
+    background: #231284;
+    color: white;
+    padding: 70px 15px 15px;
+    transition: width 0.3s ease;
+    overflow-x: hidden;
+}
+
+/* Collapsed Sidebar */
+.sidebar.collapsed {
+    width: 70px;
+}
+
+/* Title */
+.sidebar h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 18px;
+    white-space: nowrap;
+    transition: opacity 0.3s ease;
+}
+
+/* Hide title when collapsed */
+.sidebar.collapsed h2 {
+    opacity: 0;
+}
+
+/* Menu links */
+.sidebar a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    margin-bottom: 8px;
+    background: #007bff;
+    border-radius: 5px;
+    text-align: center;
+    white-space: nowrap;
+    transition: 0.3s;
+}
+
+.sidebar a:hover {
+    background: #0056b3;
+}
+
+/* Hide text when collapsed */
+.sidebar.collapsed a {
+    font-size: 0;
+    padding: 12px;
+}
+
+.sidebar.collapsed a::before {
+    font-size: 16px;
+    content: "•";
+}
+
+/* Main Content */
+.content {
+    margin-left: 240px;
+    padding: 40px;
+    transition: margin-left 0.3s ease;
+}
+
+/* Adjust content when collapsed */
+.content.collapsed {
+    margin-left: 90px;
+}
+
+/* Dashboard Card */
+.card {
+    background: rgba(255,255,255,0.88);
+    padding: 30px;
+    border-radius: 12px;
+}
+</style>
+</head>
+
+<body>
+
+<button class="toggle-btn" onclick="toggleMenu()">☰</button>
+
+<div id="sidebar" class="sidebar">
+    <h2>Loan Processing<br>System</h2>
+    <a href="{% url 'dashboard' %}">Dashboard</a>
+    <a href="{% url 'loan_application' %}">New Loan</a>
+    <a href="{% url 'loans' %}">Loans</a>
+    <a href="{% url 'inventory_bike' %}">Inventory</a>
+    <a href="{% url 'add_staff' %}">User</a>
+    <a href="{% url 'landing' %}">Logout</a>
+    
+</div>
+
+<div id="content" class="content">
+    <div class="card">
+        <h2>Welcome, Admin</h2>
+        <p>This is your Loan Processing Dashboard.</p>
+    </div>
+</div>
+
+<script>
+function toggleMenu() {
+    document.getElementById("sidebar").classList.toggle("collapsed");
+    document.getElementById("content").classList.toggle("collapsed");
+}
+</script>
+
+</body>
+</html>

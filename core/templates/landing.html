@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Loan Management Software{% endblock %}
+
+{% block content %}
+
+
+<section class="hero">
+    <div class="overlay"></div>
+    <div class="hero-content">
+        <h1>Louie's BikeShop</h1>
+        <p>
+         A secure and easy-to-use cloud-based financing system developed specifically for bicycle shops to streamline loan processing, payment tracking, and inventory management.
+        </p>
+        <a href="{% url 'login' %}" class="btn-primary">Login</a>
+    </div>
+</section>
+{% endblock %}
