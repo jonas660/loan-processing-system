@@ -112,7 +112,7 @@ def loan_application(request):
         )
 
         messages.success(request, "Loan application submitted successfully!")
-        return redirect("loan_application")
+        return redirect("dashboard")
 
     return render(request, 'loan_application.html', {'bicycles': bicycles})
 
