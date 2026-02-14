@@ -110,6 +110,8 @@ def loan_application(request):
             proof_of_income="proof_of_income/default.pdf",  # temporary
             valid_id="valid_ids/default.pdf"  # temporary
         )
+        bicycle.quantity -= 1
+        bicycle.save()
 
         messages.success(request, "Loan application submitted successfully!")
         return redirect("dashboard")
