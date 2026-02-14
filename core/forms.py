@@ -58,15 +58,25 @@ class LoanApplicationForm(forms.ModelForm):
     class Meta:
         model = LoanApplication
         fields = [
-            'first_name',
+          'first_name',
             'last_name',
             'contact_number',
             'address',
             'loan_purpose',
             'loan_amount',
             'proof_of_income',
-            'valid_id'
+            'valid_id',
         ]
+        widgets = {
+            'first_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'First Name'}),
+            'last_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Last Name'}),
+            'contact_number': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Contact Number'}),
+            'address': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Address', 'rows': 2}),
+            'loan_purpose': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Loan Purpose', 'rows': 3}),
+            'loan_amount': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Loan Amount'}),
+            'proof_of_income': forms.FileInput(attrs={'class': 'form-control'}),
+            'valid_id': forms.FileInput(attrs={'class': 'form-control'}),
+        }
 
 
 class PaymentForm(forms.ModelForm):

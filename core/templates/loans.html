@@ -117,14 +117,15 @@
             {% for loan in loans %}
             <tr>
                 <td>{{ loan.user.username }}</td>
-                <td>{{ loan.first_name }}</td>
-                <td>{{ loan.amount }}</td>
+                <td>{{ loan.fullname }}</td>           <!-- Was first_name -->
+                <td>₱{{ loan.amount|floatformat:2 }}</td>   <!-- Amount -->
+                <td>{{ loan.bicycle.name }}</td>       <!-- Purpose / Bicycle -->
                 <td>{{ loan.status }}</td>
+                <td>{{ loan.created_at|date:"M d, Y" }}</td>  <!-- Date -->
                 <td>
-                    <a href="{% url 'add_payment' loan.id %}">
-                        Add Payment
-                    </a>
-                </td>
+                     <a href="{% url 'add_payment' loan.id %}">Add Payment</a>
+            </td>
+
             </tr>
             {% endfor %}
             
