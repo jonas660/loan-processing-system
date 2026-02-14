@@ -64,8 +64,6 @@ class LoanApplicationForm(forms.ModelForm):
             'address',
             'loan_purpose',
             'loan_amount',
-            'proof_of_income',
-            'valid_id',
         ]
         widgets = {
             'first_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'First Name'}),
@@ -74,8 +72,6 @@ class LoanApplicationForm(forms.ModelForm):
             'address': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Address', 'rows': 2}),
             'loan_purpose': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Loan Purpose', 'rows': 3}),
             'loan_amount': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Loan Amount'}),
-            'proof_of_income': forms.FileInput(attrs={'class': 'form-control'}),
-            'valid_id': forms.FileInput(attrs={'class': 'form-control'}),
         }
 
 
