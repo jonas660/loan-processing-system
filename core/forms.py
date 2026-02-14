@@ -58,7 +58,7 @@ class LoanApplicationForm(forms.ModelForm):
     class Meta:
         model = LoanApplication
         fields = [
-          'first_name',
+            'first_name',
             'last_name',
             'contact_number',
             'address',
