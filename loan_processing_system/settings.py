@@ -1,3 +1,6 @@
+import os
+import dj_database_url
+from decouple import config
 
 """
 Django settings for loanprocessing project.
@@ -24,12 +27,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-p!!9v8dm4duewj!s+%$h!27w8y(fyrfbbz#(2bhgm8%-+#-c^w'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-import os
-from decouple import config
+
 
 DEBUG = config('DEBUG', default=False, cast=bool)
 SECRET_KEY = config('SECRET_KEY')
-ALLOWED_HOSTS = ['your-render-app.onrender.com']
+ALLOWED_HOSTS = ['loan-processing-system.onrender.com']
 
 
 
@@ -76,18 +78,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'loanprocessing.wsgi.application'
 
+DATABASES = {
+    'default': dj_database_url.config()
+}
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-        'default': dj_database_url.config(default=config('DATABASE_URL'))
-    }
-}
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
