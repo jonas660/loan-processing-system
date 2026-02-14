@@ -1,10 +1,153 @@
-<h2>Add Payment for {{ loan.applicant_name }}</h2>
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Statement of Account</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
-<p>Remaining Balance: {{ loan.remaining_balance }}</p>
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
 
-<form method="POST">
-    {% csrf_token %}
-    <label>Amount:</label>
-    <input type="number" step="0.01" name="amount" required>
-    <button type="submit">Submit Payment</button>
-</form>
+        .soa-container {
+            background: #ffffff;
+            width: 450px;
+            padding: 30px 25px;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            color: #333;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 26px;
+            color: #1e3c72;
+        }
+
+        .section {
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .section p {
+            margin: 8px 0;
+            font-size: 15px;
+        }
+
+        .section strong {
+            color: #1e3c72;
+        }
+
+        .highlight {
+            font-weight: bold;
+            color: #2a5298;
+            font-size: 17px;
+        }
+
+        .payment-form input {
+            width: 100%;
+            padding: 10px 12px;
+            margin: 8px 0;
+            border-radius: 20px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .payment-form input:focus {
+            border-color: #1e3c72;
+            box-shadow: 0 0 8px rgba(30, 60, 114, 0.3);
+            outline: none;
+        }
+
+        .payment-form button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            background: linear-gradient(to right, #1e3c72, #2a5298);
+            color: #fff;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .payment-form button:hover {
+            transform: translateY(-2px);
+            background: linear-gradient(to right, #2a5298, #1e3c72);
+        }
+
+        .message {
+            text-align: center;
+            color: green;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        @media (max-width: 500px) {
+            .soa-container {
+                width: 100%;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="soa-container">
+    <h2>Statement of Account</h2>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="message">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+
+    <div class="section">
+        <p><strong>Applicant:</strong> {{ loan.fullname }}</p>
+        <p><strong>Bicycle:</strong> {{ loan.bicycle.name }}</p>
+    </div>
+
+    <div class="section">
+        <p><strong>Principal Amount:</strong> ₱{{ principal|floatformat:2 }}</p>
+        <p><strong>Loan Term:</strong> {{ months }} months</p>
+        <p><strong>Interest Rate:</strong> {{ interest_rate }}%</p>
+        <p><strong>Total Interest:</strong> ₱{{ total_interest|floatformat:2 }}</p>
+    </div>
+
+    <div class="section">
+        <p class="highlight">Total Payable: ₱{{ total_payable|floatformat:2 }}</p>
+        <p class="highlight">Monthly Payment: ₱{{ monthly_payment|floatformat:2 }}</p>
+    </div>
+
+    <div class="section payment-form">
+        <h3 style="text-align:center; margin-bottom: 15px; color:#1e3c72;">Add Payment</h3>
+        <p><strong>Remaining Balance:</strong> ₱{{ loan.remaining_balance|floatformat:2 }}</p>
+
+        <form method="POST">
+            {% csrf_token %}
+            <input type="number" step="0.01" name="amount" placeholder="Enter payment amount" required>
+            <button type="submit">Submit Payment</button>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

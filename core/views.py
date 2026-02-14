@@ -144,3 +144,41 @@ def add_payment(request, loan_id):
         return redirect('approved_loans')
 
     return render(request, 'add_payment.html', {'loan': loan})
+
+def loan_soa(request, loan_id):
+    loan = LoanApplication.objects.get(id=loan_id)
+
+    principal = loan.bicycle.price
+    term = loan.term  # "3 months", "6 months", "9 months"
+
+    # Set interest rate
+    if term == "3 months":
+        months = 3
+        interest_rate = 0.0368
+    elif term == "6 months":
+        months = 6
+        interest_rate = 0.0425
+    elif term == "9 months":
+        months = 9
+        interest_rate = 0.06
+    else:
+        months = 1
+        interest_rate = 0
+
+    # Compute interest
+    total_interest = principal * interest_rate
+    total_payable = principal + total_interest
+    monthly_payment = total_payable / months
+
+    context = {
+        "loan": loan,
+        "principal": principal,
+        "months": months,
+        "interest_rate": interest_rate * 100,
+        "total_interest": total_interest,
+        "total_payable": total_payable,
+        "monthly_payment": monthly_payment,
+    }
+
+    return render(request, "loan_soa.html", context)
+
