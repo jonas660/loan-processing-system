@@ -31,7 +31,7 @@ SECRET_KEY = 'django-insecure-p!!9v8dm4duewj!s+%$h!27w8y(fyrfbbz#(2bhgm8%-+#-c^w
 
 DEBUG = config('DEBUG', default=False, cast=bool)
 SECRET_KEY = config('SECRET_KEY')
-ALLOWED_HOSTS = ['loan-processing-system.onrender.com']
+ALLOWED_HOSTS = ['loan-processing-system.onrender.com', 'localhost', '127.0.0.1']
 
 
 
