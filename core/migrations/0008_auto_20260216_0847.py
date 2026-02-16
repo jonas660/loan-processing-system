@@ -1,5 +1,21 @@
 
 from django.contrib.auth.models import User
+from django.db import migrations, models  # <-- this is required!
+
+class Migration(migrations.Migration):
+    dependencies = [
+        ('core', '0007_previous_migration'),  # replace with your actual previous migration
+    ]
+
+    operations = [
+        # Example operation:
+        migrations.AddField(
+            model_name='yourmodel', 
+            name='new_field', 
+            field=models.CharField(max_length=100, null=True),
+        ),
+    ]
+
 
 def create_admin_user(apps, schema_editor):
     if not User.objects.filter(username='admin').exists():
