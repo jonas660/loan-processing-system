@@ -109,8 +109,8 @@ def loan_application(request):
             loan_purpose=message,
             term=term,
         )
-        bicycles.quantity =- 1
-        bicycles.save()
+        bike.quantity =- 1
+        bike.save()
 
         messages.success(request, "Loan application submitted successfully!")
         return redirect("dashboard")
