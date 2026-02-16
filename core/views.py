@@ -111,7 +111,7 @@ def loan_application(request):
             valid_id="valid_ids/default.pdf"  # temporary
             term=term
         )
-        bicycles.quantity -= 1
+        bicycles.quantity =- 1
         bicycles.save()
 
         messages.success(request, "Loan application submitted successfully!")
