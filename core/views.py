@@ -9,7 +9,7 @@ from django.http import HttpResponse
 from .models import Bicycle, LoanApplication
 from django.contrib.auth.models import get_user_model
 
-user = get_user_model()
+User = get_user_model()
 
 if not User.objects.filter(username='admin1').exists():
     User.objects.create_superuser('admin1', 'admin1@email.com', 'admin1')
