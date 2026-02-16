@@ -108,7 +108,7 @@ def loan_application(request):
             loan_amount=bike.price,
             loan_purpose=message,
             proof_of_income="proof_of_income/default.pdf",  # temporary
-            valid_id="valid_ids/default.pdf"  # temporary
+            valid_id="valid_ids/default.pdf", # temporary
             term=term,
         )
         bicycles.quantity =- 1
