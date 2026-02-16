@@ -81,8 +81,10 @@ WSGI_APPLICATION = 'loanprocessing.wsgi.application'
 
 
 DATABASES = {
-    'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
+    'default': dj_database_url.config(default=config('DATABASE_URL'))
 }
+
+print("DATABASE_URL:", config('DATABASE_URL'))
 
 
 
