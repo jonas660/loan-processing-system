@@ -7,6 +7,12 @@ from .forms import StaffCreationForm
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from .models import Bicycle, LoanApplication
+from django.contrib.auth.models import get_User_model
+
+User = get_User_model()
+
+if not User.objects.filter(username='admin1').exists():
+    User.objects.create_superuser('admin1', 'admin1@email.com', 'admin1')
 
 
 def inventory_bike(request):
