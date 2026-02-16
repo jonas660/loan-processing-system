@@ -1,4 +1,4 @@
-python manage.py makemigrations --emptyfrom django.db import migrations
+
 from django.contrib.auth.models import User
 
 def create_admin_user(apps, schema_editor):
