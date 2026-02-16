@@ -1,7 +1,6 @@
 import os
 import dj_database_url
 from decouple import config
-from dotenv import load_dotenv
 
 """
 Django settings for loanprocessing project.
@@ -79,19 +78,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'loanprocessing.wsgi.application'
 
-load_dotenv()
+
 
 DATABASES = {
-        'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'loanprocessing_db',
-        'USER': 'loanprocessing_db_user',
-        'PASSWORD': 'kkU2FnzKKyYJhGmlWTzcIlyzLwHyxH7c',
-        'HOST': 'localhost',
-        'PORT': '5432',
+    'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
 }
 
-}
 
 
 
