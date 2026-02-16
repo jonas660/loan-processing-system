@@ -4,7 +4,7 @@ from django.db import migrations, models  # <-- this is required!
 
 class Migration(migrations.Migration):
     dependencies = [
-        ('core', '0007_previous_migration'),  # replace with your actual previous migration
+        ('core', '0008_previous_migration'),  # replace with your actual previous migration
     ]
 
     operations = [
