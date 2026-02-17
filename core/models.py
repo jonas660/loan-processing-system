@@ -41,6 +41,7 @@ class LoanApplication(models.Model):
     
     loan_purpose = models.TextField()
     loan_amount = models.DecimalField(max_digits=12, decimal_places=2)
+    term = models.IntegerField(default=12)
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='PENDING')
     date_applied = models.DateTimeField(default=timezone.now)
 
