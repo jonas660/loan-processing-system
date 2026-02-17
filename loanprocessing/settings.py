@@ -81,10 +81,16 @@ WSGI_APPLICATION = 'loanprocessing.wsgi.application'
 
 
 DATABASES = {
-    'default': dj_database_url.config(default=config('DATABASE_URL'))
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'loan-processing-system',
+        'USER': 'postgres',
+        'PASSWORD': 'NewPassword123',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
 }
 
-print("DATABASE_URL:", config('DATABASE_URL'))
 
 
 
