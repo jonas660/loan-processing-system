@@ -109,7 +109,7 @@ def loan_application(request):
             loan_purpose=message,
             term=term,
         )
-        bike.quantity =- 1
+        bike.quantity = 1
         bike.save()
 
         messages.success(request, "Loan application submitted successfully!")
